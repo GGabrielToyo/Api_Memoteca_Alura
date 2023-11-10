@@ -8,12 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-
 @RestController
 @RequestMapping("/pensamentos")
 public class PensamentoController {
@@ -39,10 +33,9 @@ public class PensamentoController {
         return repository.findAll(paginacao).map(DadosListagemPensamentos::new);
     }
 
-    //TODO retornar tipo Page, no momento retorna lista de pensamentos
     @GetMapping("/favoritos")
-    public List<DadosListagemPensamentos> listarFavoritos(){
-        return repository.findPensamentosByFavorito("true").stream().map(DadosListagemPensamentos::new).toList();
+    public Page<DadosListagemPensamentos> listarFavoritos(Pageable paginacao){
+        return repository.findAllByFavoritoTrue(paginacao).map(DadosListagemPensamentos::new);
     }
 
     @PutMapping("/editar")

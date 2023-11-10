@@ -9,7 +9,7 @@ public record DadosListagemPensamentos(
         boolean favorito
 ) {
     public DadosListagemPensamentos(Pensamento pensamento) {
-        this(pensamento.getId(), pensamento.getConteudo(), pensamento.getAutoria(), pensamento.getModelo(), Boolean.parseBoolean(pensamento.getFavorito()));
+        this(pensamento.getId(), pensamento.getConteudo(), pensamento.getAutoria(), pensamento.getModelo(), pensamento.isFavorito());
     }
 
 }

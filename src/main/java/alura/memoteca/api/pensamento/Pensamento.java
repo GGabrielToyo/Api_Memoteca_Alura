@@ -26,18 +26,14 @@ public class Pensamento {
     @Enumerated(EnumType.STRING)
     private Modelo modelo;
 
-    private String favorito;
+    private boolean favorito;
 
     public Pensamento (DadosCadastroPensamento pensamento) {
         this.conteudo = pensamento.conteudo();
         this.autoria = pensamento.autoria();
         this.modelo = pensamento.modelo();
+        this.favorito = pensamento.favorito();
 
-        if(pensamento.favorito()) {
-            this.favorito = "true";
-        } else {
-            this.favorito = "false";
-        }
     }
 
     public void atualizarDados(DadosEditarPensamento dados) {
@@ -54,11 +50,8 @@ public class Pensamento {
         }
 
         if(dados.favorito() != null) {
-            if(dados.favorito()) {
-                this.favorito = "true";
-            } else {
-                this.favorito = "false";
-            }
+            this.favorito = dados.favorito();
         }
     }
+
 }
